@@ -17,6 +17,12 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 ROOT = Path(__file__).parent
 DIST = ROOT / "dist"
 
+# Works with either layout: files in templates/ and static/ folders,
+# or everything uploaded flat at the top level of the repo.
+TEMPLATES = ROOT / "templates" if (ROOT / "templates").is_dir() else ROOT
+IMAGES = ROOT / "static" / "images" if (ROOT / "static" / "images").is_dir() else ROOT / "images"
+IMAGE_EXT = {".jpg", ".jpeg", ".png", ".webp", ".avif", ".svg"}
+
 
 def slugify(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
@@ -46,8 +52,8 @@ def validate(site, packages):
         unknown = set(p["prices"]) - vehicle_names
         if unknown:
             sys.exit(f"Package {p['name']!r} uses unknown vehicle(s): {', '.join(unknown)}")
-        if p.get("image") and not (ROOT / "static/images" / p["image"]).exists():
-            sys.exit(f"Image not found for {p['name']!r}: static/images/{p['image']}")
+        if p.get("image") and not ((IMAGES / p["image"]).exists() or (ROOT / p["image"]).exists()):
+            sys.exit(f"Image not found for {p['name']!r}: {p['image']}")
 
 
 def build():
@@ -72,7 +78,7 @@ def build():
     site["url"] = site["url"].rstrip("/")
 
     env = Environment(
-        loader=FileSystemLoader(ROOT / "templates"),
+        loader=FileSystemLoader(TEMPLATES),
         autoescape=select_autoescape(["html"]),
         trim_blocks=True,
         lstrip_blocks=True,
@@ -81,7 +87,18 @@ def build():
     ctx = {"site": site, "packages": packages, "year": date.today().year}
 
     shutil.rmtree(DIST, ignore_errors=True)
-    shutil.copytree(ROOT / "static", DIST / "static")
+    css_dir = DIST / "static" / "css"
+    img_dir = DIST / "static" / "images"
+    css_dir.mkdir(parents=True)
+    img_dir.mkdir(parents=True)
+    css = ROOT / "static" / "css" / "style.css"
+    shutil.copy(css if css.exists() else ROOT / "style.css", css_dir / "style.css")
+    # Images: from static/images/, images/, or loose at the top level
+    for folder in (IMAGES, ROOT):
+        if folder.is_dir():
+            for f in folder.iterdir():
+                if f.suffix.lower() in IMAGE_EXT:
+                    shutil.copy(f, img_dir / f.name)
 
     (DIST / "index.html").write_text(
         env.get_template("index.html").render(**ctx, page_path="/"), encoding="utf-8"

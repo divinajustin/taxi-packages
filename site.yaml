@@ -1,0 +1,27 @@
+# ---- Business details: edit these ----
+name: Periyar Cabs                 # placeholder business name
+tagline: Drivers who know every road from the coast to the hills.
+base_city: Kochi
+phone: "919876543210"              # country code + number, no + or spaces
+whatsapp: "919876543210"
+email: bookings@example.com
+address: MG Road, Ernakulam, Kochi, Kerala 682016
+maps_url: https://maps.google.com/?q=Ernakulam
+url: https://www.example.com       # final domain, used for SEO and sitemap
+hours: Open every day, 6 am to 10 pm
+
+inclusions:
+  - Fuel, tolls and parking
+  - Driver allowance and night stay
+  - Pickup from airport, railway station or hotel
+
+vehicles:
+  - name: Sedan
+    example: Dzire, Etios or similar
+    seats: 4
+  - name: SUV
+    example: Innova Crysta or similar
+    seats: 7
+  - name: Tempo Traveller
+    example: 12-seater with AC
+    seats: 12

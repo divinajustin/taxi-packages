@@ -1,0 +1,57 @@
+# One entry per package. Prices are in rupees, keyed by vehicle name from site.yaml.
+# Leave a vehicle out if it isn't offered for that package.
+# image is optional: put the file in static/images/ and give its name.
+
+- name: Munnar hill station
+  from: Kochi
+  to: Munnar
+  days: 2
+  km: 260
+  prices: {Sedan: 6500, SUV: 8500, Tempo Traveller: 12500}
+  highlights: [Tea gardens, Mattupetty Dam, Eravikulam National Park, Echo Point]
+  summary: Climb into the Western Ghats through Cheeyappara and Valara waterfalls, with a full day among the tea estates.
+
+- name: Alleppey backwaters
+  from: Kochi
+  to: Alappuzha
+  days: 1
+  km: 130
+  prices: {Sedan: 2800, SUV: 3800, Tempo Traveller: 5500}
+  highlights: [Houseboat jetty drop, Alappuzha beach, Kuttanad paddy fields]
+  summary: A relaxed day trip to the backwaters. We drop you at the houseboat and pick you up when you're back on land.
+
+- name: Thekkady wildlife
+  from: Kochi
+  to: Thekkady
+  days: 2
+  km: 340
+  prices: {Sedan: 7500, SUV: 9800, Tempo Traveller: 14000}
+  highlights: [Periyar Tiger Reserve, Spice plantation walk, Boating on Periyar Lake]
+  summary: Forest, spice gardens and an early morning boat ride on Periyar Lake.
+
+- name: Munnar, Thekkady and Alleppey
+  from: Kochi
+  to: Alappuzha
+  days: 5
+  km: 720
+  prices: {Sedan: 17500, SUV: 22500, Tempo Traveller: 32000}
+  highlights: [Munnar tea country, Thekkady spice gardens, Alleppey houseboat drop]
+  summary: The classic Kerala circuit. Hills, forest and backwaters in one trip, ending at the houseboats.
+
+- name: Varkala cliff beach
+  from: Kochi
+  to: Varkala
+  days: 1
+  km: 340
+  prices: {Sedan: 5200, SUV: 6800}
+  highlights: [North Cliff, Papanasam beach, Janardhana Swamy temple]
+  summary: Red cliffs over the Arabian Sea, with time for a swim and sunset on the cliff.
+
+- name: Wayanad forests
+  from: Kozhikode
+  to: Wayanad
+  days: 3
+  km: 420
+  prices: {Sedan: 9800, SUV: 12800, Tempo Traveller: 18500}
+  highlights: [Edakkal Caves, Banasura Sagar Dam, Chembra Peak base, Pookode Lake]
+  summary: Caves, dams and misty forest in the north. Pickup from Kozhikode airport or station.
