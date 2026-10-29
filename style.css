@@ -1,0 +1,165 @@
+/* Palette: backwater teal + kasavu gold (the gold border of a Kerala mundu) */
+:root {
+  --teal: #0E4B4F;
+  --teal-deep: #08302F;
+  --gold: #C9A227;
+  --gold-soft: #F4EACB;
+  --ink: #1A2321;
+  --muted: #55625F;
+  --paper: #FFFFFF;
+  --mist: #EEF3F1;
+  --wa: #128C4A;
+  --radius: 10px;
+  --display: "Anek Malayalam", "Noto Sans", system-ui, sans-serif;
+  --body: "Noto Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  font-family: var(--body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--paper);
+  padding-bottom: 72px; /* room for the mobile action bar */
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--teal); }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+h1, h2, h3 { font-family: var(--display); line-height: 1.1; margin: 0 0 .5em; }
+h1 { font-size: clamp(2.4rem, 7vw, 4.25rem); font-weight: 800; letter-spacing: -.01em; }
+h2 { font-size: clamp(1.75rem, 4vw, 2.4rem); font-weight: 700; }
+h3 { font-size: 1.35rem; font-weight: 700; }
+
+.wrap { width: min(1120px, 100% - 2.5rem); margin-inline: auto; }
+
+/* The signature element: a double gold kasavu stripe */
+.kasavu {
+  height: 12px;
+  background:
+    linear-gradient(var(--gold) 0 4px, transparent 4px 7px, var(--gold) 7px 9px, transparent 9px);
+  background-color: var(--paper);
+}
+
+/* Header */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: .9rem 1.25rem; background: var(--teal-deep);
+}
+.brand { font-family: var(--display); font-weight: 800; font-size: 1.4rem; color: var(--gold-soft); text-decoration: none; }
+.topbar nav { display: flex; gap: 1.25rem; }
+.topbar nav a { color: #DCE8E5; text-decoration: none; font-weight: 600; font-size: .95rem; }
+.topbar nav a:hover { color: var(--gold-soft); }
+@media (max-width: 560px) { .topbar nav { display: none; } }
+
+/* Hero */
+.hero { background: var(--teal-deep); color: #EAF2F0; padding: clamp(2.5rem, 8vw, 5.5rem) 0 clamp(2.5rem, 6vw, 4rem); }
+.hero h1 { color: var(--paper); max-width: 14ch; }
+.lede { font-size: 1.2rem; max-width: 56ch; color: #CFE0DC; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1.75rem 0; }
+.inclusions { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; color: var(--gold-soft); font-size: .95rem; }
+.inclusions li::before { content: "✓ "; color: var(--gold); font-weight: 700; }
+.hero-pkg h1 { max-width: 20ch; }
+.back { color: var(--gold-soft); font-weight: 600; text-decoration: none; display: inline-block; margin-bottom: 1.5rem; }
+.back::before { content: "‹ "; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: .7rem 1.15rem; border-radius: 999px; font-weight: 600;
+  text-decoration: none; border: 2px solid transparent; min-height: 44px;
+}
+.btn-lg { padding: .85rem 1.5rem; font-size: 1.05rem; }
+.btn-wa { background: var(--wa); color: #fff; }
+.btn-wa:hover { background: #0E7A40; }
+.btn-light { background: transparent; color: var(--paper); border-color: rgba(255,255,255,.5); }
+.btn-light:hover { border-color: var(--gold); }
+.btn-ghost { color: var(--teal); border-color: var(--teal); }
+.btn-ghost:hover { background: var(--mist); }
+.btn-call { background: var(--teal); color: #fff; }
+
+/* Sections */
+.section { padding: clamp(2.75rem, 7vw, 4.5rem) 0; }
+.section-mist { background: var(--mist); }
+.section-intro { color: var(--muted); max-width: 60ch; margin: -.25rem 0 2rem; }
+
+/* Route line: the "from ——— to" motif on each package */
+.route { display: flex; align-items: center; gap: .6rem; font-weight: 600; font-size: .9rem; color: var(--muted); margin-bottom: .6rem; }
+.route-line { flex: 1; min-width: 2rem; height: 2px; background: repeating-linear-gradient(90deg, var(--gold) 0 8px, transparent 8px 13px); position: relative; }
+.route-line::after { content: ""; position: absolute; right: -2px; top: -4px; width: 10px; height: 10px; border-radius: 50%; background: var(--gold); }
+.route-to { color: var(--ink); }
+.route-lg { font-size: 1.05rem; color: #CFE0DC; max-width: 34rem; }
+.route-lg .route-to { color: var(--gold-soft); }
+
+/* Package cards */
+.pkg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.25rem; }
+.pkg {
+  display: flex; flex-direction: column; padding: 1.4rem;
+  border: 1px solid #D5DFDC; border-top: 4px solid var(--gold); border-radius: var(--radius);
+  background: var(--paper);
+}
+.pkg-img { border-radius: 6px; margin: -.4rem -.4rem 1rem; width: calc(100% + .8rem); aspect-ratio: 16/9; object-fit: cover; }
+.pkg h3 { margin-bottom: .2rem; }
+.pkg h3 a { color: var(--ink); text-decoration: none; }
+.pkg h3 a:hover { text-decoration: underline; }
+.pkg-meta { color: var(--muted); margin: 0 0 .75rem; font-size: .95rem; }
+.pkg-from { margin: auto 0 1rem; }
+.pkg-from strong { font-family: var(--display); font-size: 1.6rem; color: var(--teal); }
+.pkg-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
+
+/* Vehicles */
+.vehicles { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+.vehicle { background: var(--paper); border-radius: var(--radius); padding: 1.25rem 1.4rem; }
+.vehicle p { margin: 0; color: var(--muted); }
+.vehicle h3 { margin: .2rem 0; }
+.vehicle-seats { font-family: var(--display); font-weight: 800; font-size: 2.2rem; color: var(--teal) !important; line-height: 1; }
+.vehicle-seats span { font-size: 1rem; font-weight: 600; color: var(--muted); }
+
+/* Steps (a real sequence, so numbered) */
+.steps { padding-left: 1.4rem; max-width: 62ch; }
+.steps li { margin-bottom: .75rem; padding-left: .3rem; }
+.steps li::marker { font-family: var(--display); font-weight: 800; color: var(--gold); }
+
+/* Package detail page */
+.detail { display: grid; gap: 2.5rem; grid-template-columns: 1fr; }
+@media (min-width: 820px) { .detail { grid-template-columns: 1.2fr 1fr; } .detail-img { grid-column: 1 / -1; } }
+.detail-img { border-radius: var(--radius); }
+.prices { width: 100%; border-collapse: collapse; margin-bottom: 1rem; font-size: 1.05rem; }
+.prices th { text-align: left; font-size: .9rem; color: var(--muted); font-weight: 600; padding: .4rem 0; border-bottom: 2px solid var(--gold); }
+.prices td { padding: .75rem 0; border-bottom: 1px solid #DDE5E2; }
+.prices td:last-child, .prices th:last-child { text-align: right; }
+.prices td:last-child { font-weight: 600; font-family: var(--display); font-size: 1.25rem; color: var(--teal); }
+.note { color: var(--muted); font-size: .95rem; margin-bottom: 1.5rem; }
+.highlights { padding: 0; list-style: none; margin: 0; }
+.highlights li { padding: .6rem 0 .6rem 1.4rem; border-bottom: 1px solid #DDE5E2; position: relative; }
+.highlights li::before { content: ""; position: absolute; left: 0; top: 1.05rem; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+
+/* Footer */
+.footer { background: var(--teal-deep); color: #CFE0DC; margin-top: 1rem; }
+.footer .kasavu { background-color: var(--teal-deep); }
+.footer-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); padding: 2.5rem 0 1rem; }
+.footer p { margin: 0 0 .35rem; }
+.footer-name { font-family: var(--display); font-weight: 800; font-size: 1.4rem; color: var(--gold-soft); }
+.footer-links { display: flex; flex-direction: column; gap: .5rem; }
+.footer-links a { color: var(--paper); }
+.footer .copyright { margin: 0 auto; font-size: .85rem; padding-bottom: 1.5rem; color: #93AAA5; }
+
+/* Sticky action bar on phones */
+.actionbar {
+  position: fixed; inset: auto 0 0 0; z-index: 10;
+  display: grid; grid-template-columns: 1fr 1.6fr; gap: .5rem;
+  padding: .6rem .75rem calc(.6rem + env(safe-area-inset-bottom));
+  background: var(--paper); border-top: 1px solid #D5DFDC;
+}
+.actionbar .btn { width: 100%; }
+@media (min-width: 900px) {
+  body { padding-bottom: 0; }
+  .actionbar { inset: auto 1.5rem 1.5rem auto; display: block; padding: 0; background: none; border: 0; }
+  .actionbar .btn-call { display: none; }
+  .actionbar .btn-wa { box-shadow: 0 6px 20px rgba(8, 48, 47, .3); padding-inline: 1.5rem; }
+}

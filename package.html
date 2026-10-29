@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}{{ p.name }} taxi package from {{ p.from }}: {{ site.name }}{% endblock %}
+{% block description %}{{ p.days }} day taxi package from {{ p.from }} to {{ p.to }}, from Rs {{ p.min_price | rupees }}. {{ p.summary }}{% endblock %}
+{% block wa_link %}{{ p.wa_link }}{% endblock %}
+{% block content %}
+<section class="hero hero-pkg">
+  <div class="wrap">
+    <a class="back" href="/#packages">All packages</a>
+    <div class="route route-lg" aria-label="{{ p.from }} to {{ p.to }}">
+      <span>{{ p.from }}</span>
+      <span class="route-line" aria-hidden="true"></span>
+      <span class="route-to">{{ p.to }}</span>
+    </div>
+    <h1>{{ p.name }}</h1>
+    <p class="lede">{{ p.days }} day{{ "s" if p.days > 1 }}{% if p.km %}, about {{ p.km }} km{% endif %}. {{ p.summary }}</p>
+  </div>
+</section>
+<div class="kasavu" aria-hidden="true"></div>
+
+<section class="section">
+  <div class="wrap detail">
+    {% if p.image %}
+    <img class="detail-img" src="/static/images/{{ p.image }}" alt="{{ p.to }}" width="1200" height="675">
+    {% endif %}
+    <div>
+      <h2>Price by vehicle</h2>
+      <table class="prices">
+        <thead><tr><th scope="col">Vehicle</th><th scope="col">Price</th></tr></thead>
+        <tbody>
+          {% for vehicle, price in p.price_rows %}
+          <tr><td>{{ vehicle }}</td><td>&#8377;{{ price | rupees }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <p class="note">Includes: {{ site.inclusions | join("; ") | lower }}.</p>
+      <a class="btn btn-wa btn-lg" href="{{ p.wa_link }}" rel="noopener">Book on WhatsApp</a>
+    </div>
+    {% if p.highlights %}
+    <div>
+      <h2>Places on the way</h2>
+      <ul class="highlights">
+        {% for h in p.highlights %}<li>{{ h }}</li>{% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

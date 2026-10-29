@@ -1,0 +1,19 @@
+<article class="pkg">
+  {% if p.image %}
+  <img class="pkg-img" src="/static/images/{{ p.image }}" alt="{{ p.to }}" loading="lazy" width="640" height="360">
+  {% endif %}
+  <div class="route" aria-label="{{ p.from }} to {{ p.to }}">
+    <span>{{ p.from }}</span>
+    <span class="route-line" aria-hidden="true"></span>
+    <span class="route-to">{{ p.to }}</span>
+  </div>
+  <h3><a href="/packages/{{ p.slug }}/">{{ p.name }}</a></h3>
+  <p class="pkg-meta">
+    {{ p.days }} day{{ "s" if p.days > 1 }}{% if p.km %}, about {{ p.km }} km{% endif %}
+  </p>
+  <p class="pkg-from">From <strong>&#8377;{{ p.min_price | rupees }}</strong></p>
+  <div class="pkg-actions">
+    <a class="btn btn-wa" href="{{ p.wa_link }}" rel="noopener">Book on WhatsApp</a>
+    <a class="btn btn-ghost" href="/packages/{{ p.slug }}/">See details</a>
+  </div>
+</article>

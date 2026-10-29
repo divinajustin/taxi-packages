@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div class="wrap">
+    <h1>Taxi packages across Kerala</h1>
+    <p class="lede">{{ site.tagline }} Fixed prices from {{ site.base_city }}, quoted per vehicle, before you travel.</p>
+    <div class="hero-actions">
+      <a class="btn btn-wa btn-lg" href="{{ site.wa_general }}" rel="noopener">Message us on WhatsApp</a>
+      <a class="btn btn-light btn-lg" href="tel:+{{ site.phone }}">Call +{{ site.phone }}</a>
+    </div>
+    <ul class="inclusions">
+      {% for item in site.inclusions %}<li>{{ item }}</li>{% endfor %}
+    </ul>
+  </div>
+</section>
+<div class="kasavu" aria-hidden="true"></div>
+
+<section id="packages" class="section">
+  <div class="wrap">
+    <h2>Packages</h2>
+    <p class="section-intro">Prices are for the whole vehicle, not per person. Tap a package for the full price list.</p>
+    <div class="pkg-grid">
+      {% for p in packages %}{% include "_card.html" %}{% endfor %}
+    </div>
+  </div>
+</section>
+
+<section id="vehicles" class="section section-mist">
+  <div class="wrap">
+    <h2>Vehicles</h2>
+    <div class="vehicles">
+      {% for v in site.vehicles %}
+      <div class="vehicle">
+        <p class="vehicle-seats">{{ v.seats }}<span> seats</span></p>
+        <h3>{{ v.name }}</h3>
+        <p>{{ v.example }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2>How booking works</h2>
+    <ol class="steps">
+      <li><strong>Send us a message</strong> on WhatsApp with the package, date and number of people.</li>
+      <li><strong>Get a confirmation</strong> with the vehicle, driver name and pickup time.</li>
+      <li><strong>Pay the driver</strong> at the end of the trip, by cash or UPI.</li>
+    </ol>
+  </div>
+</section>
+{% endblock %}
